@@ -17,7 +17,7 @@ public:
 	// Returns the first sound defined by the filename, if a sound does not exist at that filename, it returns a blank Sound object.
 	Sound getSound(std::string fileName);
 	// Plays a sound defined by the fileName once.
-	void playSound(std::string fileName);
+	HCHANNEL playSound(std::string fileName);
 	// Loops a sound until the user calls stopSound.
 	void loopSound(std::string fileName); // TODO
 	// Stops a sound, useful for stopping loops.

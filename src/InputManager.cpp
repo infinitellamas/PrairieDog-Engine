@@ -8,7 +8,15 @@ InputManager::InputManager()
 }
 
 void InputManager::listenForKey(char keyCode) {
-	_keys.push_back(Key(keyCode, false));
+	bool doesContain = false;
+	for (int i = 0; i < _keys.size(); i++) {
+		if (_keys.at(i).getKeyCode() == keyCode) {
+			doesContain = true;
+		}
+	}
+	if (!doesContain) { //Only place in if it doesnt already exist.
+		_keys.push_back(Key(keyCode, false));
+	}
 }
 
 Key InputManager::getKey(char keyCode) {
@@ -31,7 +39,7 @@ int InputManager::_updateAsync() {
 		ReadConsoleInput(consoleHandle, &inputRecord, 1, &readNum);
 		for (unsigned int k = 0; k < _keys.size(); k++) {
 			if (_keys.at(k).getKeyCode() == inputRecord.Event.KeyEvent.uChar.AsciiChar) {
-				_keys.at(k).setAsyncIsKeyHeld(inputRecord.Event.KeyEvent.bKeyDown);
+				_keys.at(k).setAsyncIsKeyHeld(inputRecord.Event.KeyEvent.bKeyDown ? true : false);
 			}
 		}
 	}

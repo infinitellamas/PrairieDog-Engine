@@ -29,8 +29,8 @@ public:
 		_pos = pos;
 	}
 
-	Glyphset getGlyphset() {
-		return _glyphset;
+	Glyphset* getGlyphset() {
+		return &_glyphset;
 	}
 
 	void setGlyphset(Glyphset newGlyphset) {
@@ -45,8 +45,10 @@ public:
 		_pos = newPos;
 	}
 
-
+	Entity* isCollidingWith;
+	bool markForDeletion = false;
 private:
 	Glyphset _glyphset;
 	b2Vec3 _pos;
+	
 };

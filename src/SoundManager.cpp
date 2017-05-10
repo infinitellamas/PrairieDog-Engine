@@ -43,13 +43,14 @@ Sound SoundManager::getSound(std::string fileName) {
 	return Sound();
 }
 
-void SoundManager::playSound(std::string fileName) {
+HCHANNEL SoundManager::playSound(std::string fileName) {
 	for (unsigned int i = 0; i < _sounds.size(); i++) {
 		if (_sounds.at(i).getFileName() == fileName) {
 			HCHANNEL ch = _sounds.at(i).getChannel();
 			BASS_ChannelSetAttribute(ch, BASS_ATTRIB_VOL, 1);
 			BASS_ChannelSetAttribute(ch, BASS_ATTRIB_PAN, 0);
-			BASS_ChannelPlay(ch, FALSE);
+			//BASS_ChannelPlay(ch, FALSE);
+			return ch;
 		}
 	}
 }
